@@ -1,0 +1,36 @@
+# Python environment
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Virtual Environment
+myvenv/
+env/
+venv/
+
+# Data / Models
+/data/processed/
+/models/
+/logs/
+/reports/
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Git helper files
+*.log
+*.tmp
+*.bak

@@ -102,25 +102,41 @@ Recommendation engine with Bandits / Q-learning
 
 ```
 autoai-insight/
+autoai-insight/
 ├── backend/
-│   ├── data_pipeline/             # Preprocessing, transformations
-│   ├── supervised_models/         # Classical ML models (scikit-learn)
-│   ├── deep_learning_models/      # Deep learning architectures
-│   ├── unsupervised_models/       # Clustering, anomaly detectors
-│   ├── training/                  # Pipelines, hyperparameter tuning
-│   ├── evaluation/                # Metrics, explainability
-│   ├── deployment/                # REST API, Docker configs
-│   ├── utils/                     # Helpers, loggers, serializers
-│
-├── frontend/                      # Streamlit or React-based UI
-├── data/                          # Raw, interim, and processed data
-├── notebooks/                     # Jupyter exploration, EDA, tests
-├── models/                        # Saved and versioned models
-├── reports/                       # Auto-generated model reports
-├── logs/                          # Training and inference logs
-├── docker/                        # Docker setup files
-├── tests/                         # Unit and integration tests
-└── README.md                      # Project documentation
+│   ├── data_pipeline/
+│   │   ├── __init__.py
+│   │   ├── data_loader.py
+│   │   ├── transformers.py
+│   │   ├── preprocessing.py
+│   │   └── utils.py
+│   ├── eda/
+│   │   ├── __init__.py
+│   │   ├── eda_analyzer.py
+│   │   └── plot_generator.py
+│   ├── supervised_models/
+│   │   ├── __init__.py
+│   │   ├── model_selector.py
+│   │   └── trainer.py
+│   ├── evaluation/
+│   │   ├── __init__.py
+│   │   ├── metrics.py
+│   │   └── explainability.py
+│   └── utils/
+│       ├── __init__.py
+│       └── logger.py
+├── data/
+│   ├── raw/
+│   │   └── synthetic_data.csv
+│   └── processed/
+├── models/
+├── reports/
+├── logs/
+├── config/
+│   └── config.yaml
+├── main.py
+├── requirements.txt
+└── README.md
 ```
 
 

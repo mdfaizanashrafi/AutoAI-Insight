@@ -1,0 +1,17 @@
+#defining how the  dataset should be preprocessed before being fed into the model
+
+preprocessing:
+  numerical_strategy: median  #fill missing values(NaN) in the numerical columns with median of the columns valiues
+  categorical_strategy: mode #fill missing values in categorical cols uusing the mode(most frequent value) of the cols
+  scale_numerical: true #enables scaling of numerical featurs i.e StandardScaler or MinMaxScaler
+  encode_categorical: true #encode categorical variables sp that they can be used by ML models
+  detect_outliers: true #enables detection and possibly handling of outliers in the numerical features
+
+#defines how the models will be trained
+
+training:
+  task_type: auto  #auto detect the type of ML task(classification or regression) based on the target variable
+  test_size:0.2  #20% of dataset will be used to evaluate the model performance after training
+  random_state:42  #Sets the random seed for reproducibility, ensuring the same train/test split and model behavior every time the pipeline runs
+
+
