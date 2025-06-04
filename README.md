@@ -102,41 +102,28 @@ Recommendation engine with Bandits / Q-learning
 
 ```
 autoai-insight/
-autoai-insight/
 ├── backend/
-│   ├── data_pipeline/
-│   │   ├── __init__.py
-│   │   ├── data_loader.py
-│   │   ├── transformers.py
-│   │   ├── preprocessing.py
-│   │   └── utils.py
-│   ├── eda/
-│   │   ├── __init__.py
-│   │   ├── eda_analyzer.py
-│   │   └── plot_generator.py
-│   ├── supervised_models/
-│   │   ├── __init__.py
-│   │   ├── model_selector.py
-│   │   └── trainer.py
-│   ├── evaluation/
-│   │   ├── __init__.py
-│   │   ├── metrics.py
-│   │   └── explainability.py
-│   └── utils/
-│       ├── __init__.py
-│       └── logger.py
-├── data/
+│   ├── data_pipeline/             # Data loading, cleaning, transformation
+│   ├── eda/                       # EDA tools and dashboards
+│   ├── supervised_models/         # Classical ML models (sklearn)
+│   ├── evaluation/                # Metrics, explainability, plots
+│   ├── utils/                     # Shared utilities (logging, helpers)
+│
+├── frontend/                      # Web UI (Streamlit or React)
+│
+├── data/                          # Raw and processed datasets
 │   ├── raw/
-│   │   └── synthetic_data.csv
 │   └── processed/
-├── models/
-├── reports/
-├── logs/
-├── config/
-│   └── config.yaml
-├── main.py
-├── requirements.txt
-└── README.md
+│
+├── models/                        # Saved trained models
+├── reports/                       # Auto-generated model reports
+├── logs/                          # Logs from training, inference
+├── config/                        # Configuration files (e.g., config.yaml)
+├── tests/                         # Unit/integration tests
+│
+├── main.py                        # Entry point (optional)
+├── requirements.txt               # Python dependencies
+└── README.md                      # Project documentation
 ```
 
 
