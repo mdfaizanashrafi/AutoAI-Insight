@@ -36,3 +36,40 @@ def detect_feature_types(df):
                 feature_types[col]= 'numerical'
         
     return feature_types
+
+
+#==========================================
+#Build full pipeline:
+#=======================================
+"""building a robust preprocessing pipeline that applies different transformation to different
+tyoes of columns in our dataset
+ColumnTransformer: apply diff transformers to diff cols
+Pipeline: chain multiple transformers into one reusable unit"""
+
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from transformers import MissingValueHandler, FeatureScaler, CategoricalEncoder
+
+def build_preprocessing_pipeline(df, feature_types):
+    numerical_features=[k for k,v in feature_types.items() if v == 'numerical']
+    categorical_features = [k for k,v in feature_types.items() if v == 'categorical']
+    text_features = [k for k, v in feature_types.items() if v == 'text']
+
+    #Define transformers:
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', Pipeline([
+                ('missing', MissingValueHandler(strategy='median')),
+                ('scale', FeatureScaler(scaling_method='standard'))
+            ]), numerical_features),
+            ('cat',Pipeline([
+                ('missing', MissingValueHandler(strategy='constant',fill_value='MISSING')),
+                ('encode', CategoricalEncoder(encoding_method='ordinal'))
+            ]), categorical_features),
+            ('txt', Pipeline([
+                ('missing', MissingValueHandler(strategy='constant',fill_value='MISSING')),
+            ]), text_features)
+        ], remainder='drop')
+    
+    return preprocessor
