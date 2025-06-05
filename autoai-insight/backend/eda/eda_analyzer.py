@@ -18,7 +18,10 @@ class EDAAnalyzer:
     
 
     def feature_summary(self):
-        """summarize each fetures stats"""
+        """summarize each fetures stats
+        loops through each cols and return a list of dictionaries containing
+        detailed feature stats"""
+
         summary=[]
         for col in self.df.columns:
             dtype = str(self.df[col].dtype)
@@ -27,7 +30,7 @@ class EDAAnalyzer:
             if 'int' in dtype or 'float' in dtype:
                 mean = round(self.df[col].mean(),2)
                 std = round(self.df[col].std(),2)
-                min_val = self.df[col].mix()
+                min_val = self.df[col].min()
                 max_val = self.df[col].max()
                 summary.append({
                     'Feature': col,
@@ -57,7 +60,13 @@ class EDAAnalyzer:
 
 
     def detect_outliers(self, col, method='iqr'):
-        """detect outliers in a numerical cols"""
+        """detect outliers in a numerical colsusing IQR: InterQuartile range
+        IQR is a measure of statistical dipersion: how spread out the middle 50%
+        pf our data is.
+        Q1= the value below which 25% of the data falls
+        Q3= the value below which 75% of data falls
+        IQR= Q3-Q1
+        """
         q1 = self.df[col].quantile(0.25)
         q3= self.df[col].quantile(0.75)
         iqr=q3-q1
