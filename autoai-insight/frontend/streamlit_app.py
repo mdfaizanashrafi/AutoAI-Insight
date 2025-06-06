@@ -33,5 +33,11 @@ uploaded_file= st.file_uploader("Upload your dataset (.csv, .parquet, .json)", t
 
 if uploaded_file is not None:
     try:
+        df = load_data(uploaded_file.name)
+        st.success("Dataset loaded successfully!") 
+
+        analyzer= EDAAnalyzer(df)
+        plotter= PlotGenerator(df)
+
         
 
