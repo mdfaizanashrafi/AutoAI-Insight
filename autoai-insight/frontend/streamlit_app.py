@@ -39,5 +39,35 @@ if uploaded_file is not None:
         analyzer= EDAAnalyzer(df)
         plotter= PlotGenerator(df)
 
-        
+        #Basoc Stats:
+        st.subheader("Dataset Summary")
+        stats = analyzer.get_basic_stats()
+        st.write(f"Rows: {stats['shape'][0]}, Columns: {stats['shape'][1]}")
+        st.write(f"Missing Values: {stats['missing_values']}")
+        st.write(f"Duplicate Rows: {stats['n_duplicates']}")
 
+
+        #Feature summary
+        st.subheader("Feature Summary")
+        feature_summary= pd.DataFrame(analyzer.feature_summary())
+        st.dataframe(feature_summary)
+
+        #select cols for plots
+        selected_col= st.selectbox("Select a column to visualize", options= df.columns.tolist())
+
+        #Plot options:
+        plot_type= st.radio("Select plot type", [
+            "Histogram",
+            "Boxplot",
+            "Bar Chart",
+            "Correlation Heatmap",
+            "PCA Plot",
+            "t-SNE Plot"
+        ])
+
+        if plot_type == "Histogram":
+            plotter.plot_histogram(selected_col)
+        elif plot_type == "Boxplot":
+            plotter.plot_boxplot(selected_col)
+        elif plot_type == "Bar Chart":
+            
