@@ -19,7 +19,7 @@ Real-time visualizations
 Uses load_data, EDAAnalyzer, and PlotGenerator from separate modules
 Easy to extend or plug into larger ML pipelines
 """
-
+import os
 import streamlit as st
 import pandas as pd
 from backend.data_pipeline.data_loader import load_data
@@ -70,4 +70,20 @@ if uploaded_file is not None:
         elif plot_type == "Boxplot":
             plotter.plot_boxplot(selected_col)
         elif plot_type == "Bar Chart":
-            
+            if df[selected_col].dtype == 'O':
+                plotter.plot_bar_chart(selected_col)
+            else:
+                st.warning("Bar chart is only supported for categorical features.")
+        elif plot_type == 'Correlation Heatmap':
+            plotter.plot_correlation_heatmap()
+        elif plot_type == "PCA Plot":
+            target_col =  st.selectbox("Select target column for coloring", options= df.columns.tolist(), key='pca_target')
+            plotter.plot_pca(target_col=target_col)
+        elif plot_type == "t-SNE Plot":
+            target_col= st.selectbox("Select target column for coloring", options=df.columns.tolist(), key= "tsne_target")
+            plotter.plot_tsne(target_col= target_col)
+        
+    except Exception as e:
+        st.error(f"Error loading dataset: {e}")
+else:
+    st.info("Please upload a dataset to begin EDA")
