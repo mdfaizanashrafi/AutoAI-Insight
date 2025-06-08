@@ -7,3 +7,4 @@ def get_file_extension(file_path):
 def is_valid_dataset(file_path):
     valid_exts= ['.csv','.parquet','.json']  
     return get_file_extension(file_path) in valid_exts 
+

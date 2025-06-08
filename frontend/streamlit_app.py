@@ -87,3 +87,6 @@ if uploaded_file is not None:
         st.error(f"Error loading dataset: {e}")
 else:
     st.info("Please upload a dataset to begin EDA")
+
+
+#error in finding the backend module
