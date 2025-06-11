@@ -34,4 +34,25 @@ for module in modules:
 
 print ("Init FIles created")
 
+
+# test_imports.py
+
+try:
+    from backend.data_pipeline.data_loader import load_data
+    from backend.eda.eda_analyzer import EDAAnalyzer
+    from backend.eda.plot_generator import PlotGenerator
+    print("✅ All imports worked!")
+except Exception as e:
+    print("❌ Import failed:", e)
 '''
+
+# test_import.py
+
+import sys
+sys.path.append(".")  # Add current folder to Python path
+
+try:
+    from backend.data_pipeline.utils import get_file_extension
+    print("✅ Import successful!")
+except Exception as e:
+    print("❌ Import failed:", e)

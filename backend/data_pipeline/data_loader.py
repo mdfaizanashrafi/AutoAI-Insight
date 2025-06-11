@@ -1,3 +1,10 @@
+import os
+import sys
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+if PROJECT_ROOT not in sys.path:    
+    sys.path.append(PROJECT_ROOT)
+
 import pandas as pd
 import polars as pl
 from utils import get_file_extension
@@ -20,6 +27,9 @@ def load_data(file_path, engine='pandas'):
             return pl.read_parquet(file_path).to_pandas()
         elif ext == '.json':
             return pl.read_json(file_path).to_pandas()
+        
+    else:
+        raise ValueError(f"Unsupported engine: {engine}")
     
     return ValueError(f"Unsupported file format: {ext}")
 

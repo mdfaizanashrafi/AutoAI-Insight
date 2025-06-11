@@ -19,7 +19,14 @@ Real-time visualizations
 Uses load_data, EDAAnalyzer, and PlotGenerator from separate modules
 Easy to extend or plug into larger ML pipelines
 """
+
 import os
+import sys
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+if PROJECT_ROOT not in sys.path:    
+    sys.path.append(PROJECT_ROOT)
+
 import streamlit as st
 import pandas as pd
 from backend.data_pipeline.data_loader import load_data
