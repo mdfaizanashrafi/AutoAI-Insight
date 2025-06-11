@@ -1,6 +1,6 @@
 #class that automates training evaluation and saving of machine learnign models.
 
-from model_selector import get_classification_models, get_regression_models
+from backend.supervised_models.model_selector import get_classification_models, get_regression_models
 from sklearn.model_selection import cross_val_score,StratifiedKFold, KFold
 from sklearn.metrics import accuracy_score, precision_score, recall_score,f1_score, mean_squared_error
 from sklearn.model_selection import GridSearchCV
