@@ -1,5 +1,6 @@
+#class that automates training evaluation and saving of machine learnign models.
 
-
+from model_selector import get_classification_models, get_regression_models
 from sklearn.model_selection import cross_val_score,StratifiedKFold, KFold
 from sklearn.metrics import accuracy_score, precision_score, recall_score,f1_score, mean_squared_error
 from sklearn.model_selection import GridSearchCV
@@ -8,6 +9,8 @@ import os
 
 class ModelTrainer:
     def __init__(self, X, y, task_type='classification', cv=5, scoring= None):
+        """X= features(pandas DF or numpy array)
+        y= target variable, cv= number of cross validation folds"""
         self.X = X
         self.y = y
         self.task_type = task_type
@@ -41,6 +44,8 @@ class ModelTrainer:
     
 
     def hyperparameter_tuning(self, model_name, param_grid, n_jobs= -1):
+        #performs grid search with cross validation
+        
         model = self.models[model_name]
         grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv= self.cv, scoring= self.scoring, n_jobs= n_jobs)
         grid_search.fit(self.X, self.y)
